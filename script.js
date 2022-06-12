@@ -15,6 +15,28 @@ const background = document.getElementById("video-background");
 let playVideoBtn = document.getElementById("btn-change-background")
 
 
+const cookieBox = document.querySelector(".wrapper"),
+    acceptBtn = cookieBox.querySelector("button");
+
+    acceptBtn.onclick = ()=>{
+		//setting cookie for 1 month-> 7 days, after  it'll be expired automatically
+		document.cookie = "Cookie=Aruka; max-age="+60*60*24*7;
+		if(document.cookie){ //if cookie is set
+		  cookieBox.classList.add("hide"); //hide cookie box
+		}else{ //if cookie not set then alert an error
+		  alert("Cookie can't be set! Please unblock this site from the cookie setting of your browser.");
+		}
+	  }
+	  let checkCookie = document.cookie.indexOf("Cookie=Aruka"); //checking our cookie
+	  //if cookie is set then hide the cookie box else show it
+	  checkCookie != -1 ? cookieBox.classList.add("hide") : cookieBox.classList.remove("hide");
+  
+  
+
+
+	document.cookie = "MENTORS=CRUSH; expires=Wed, 15-Jun-2022 16:00:00 UTC;";
+	alert(document.cookie);
+
 
 function playVideo(){
 	if(background.paused){
