@@ -7,15 +7,18 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
+<body onload="setVolumeFromStorage()">
   
   <div class="general">
-    
-    <video id="video-background" autoplay muted loop width="100%">
-        <source src="video/Beauty.mp4">
-        
-      </source> 
-    
+    <video id="video-background" muted loop width="100%">   <!--autoplay-->
+      <source src="video/Beauty.mp4">
+    </source> 
+  </video>
+  </div>  
+
+  <div class="btn-change-bcg">
+    <button id="btn-change-background" onclick="playVideo()"> play the video</button>
+  </div>
    
 
   <div class="main">
@@ -64,9 +67,6 @@
   	</div>
 </div>
 
-</video>
-
-  </div>
    
   <!--- Add javascript file --->
   <script src="script.js"></script>

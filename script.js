@@ -11,8 +11,22 @@ let auto_play = document.querySelector('#auto');
 let present = document.querySelector('#present');
 let total = document.querySelector('#total');
 let artist = document.querySelector('#artist');
+const background = document.getElementById("video-background");
+let playVideoBtn = document.getElementById("btn-change-background")
 
 
+
+function playVideo(){
+	if(background.paused){
+	  background.play();
+	  playVideoBtn.style.backgroundColor = '#ccc';
+	  playVideoBtn.innerHTML = '<p style="color: black;">pause the video</p>'
+	}else{
+	  background.pause()
+	  playVideoBtn.style.backgroundColor = '#FF8A65'
+	  playVideoBtn.innerHTML = '<p style="color: white;">play the video</p>'
+	}
+}
 
 let timer;
 let autoplay = 0;
@@ -27,34 +41,34 @@ let track = document.createElement('audio');
 //All songs list
 let All_song = [
    {
-     name: "first song",
+     name: "Sparkle",
      path: "music/song1.mp3",
      img: "img/img1.jpg",
-     singer: "1"
+     singer: "Yojiro Noda"
    },
    {
-     name: "second song",
+     name: "Zenzenzense",
      path: "music/song2.mp3",
      img: "img/img2.jpg",
-     singer: "2"
+     singer: "Yojiro Noda"
    },
    {
-     name: "third song",
+     name: "Dream Lantern",
      path: "music/song3.mp3",
      img: "img/img3.jpg",
-     singer: "3"
+     singer: "Yojiro Noda"
    },
    {
-     name: "fourth song",
+     name: "Nandemonaiya",
      path: "music/song4.mp3",
      img: "img/img4.jpg",
-     singer: "4"
+     singer: "Akira Kuwahara"
    },
    {
-     name: "fifth song",
+     name: "Cafe at last",
      path: "music/song5.mp3",
      img: "img/img5.jpg",
-     singer: "5"
+     singer: "Akira Kuwahara"
    }
 ];
 
@@ -152,8 +166,11 @@ function previous_song(){
 
 // change volume
 function volume_change(){
-	volume_show.innerHTML = recent_volume.value;
+	// <!--volume_show.innerHTML = recent_volume.value;-->
 	track.volume = recent_volume.value / 100;
+	volume_show.innerHTML=recent_volume.value;
+	// track.volume=save_value/100;
+	localStorage.setItem('sound',recent_volume.value);
 }
 
 // change slider position 
@@ -173,6 +190,11 @@ function autoplay_switch(){
 	}
 }
 
+function setVolumeFromStorage() {
+	const volume = localStorage.getItem('sound');
+	track.volume = volume / 100;
+	volume_show.innerHTML= volume;
+}
 
 function range_slider(){
 	let position = 0;
